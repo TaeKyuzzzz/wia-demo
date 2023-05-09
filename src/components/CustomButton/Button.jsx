@@ -5,11 +5,12 @@ import { Button } from 'antd';
 
 const buttonStyle = {
     top: '20px',
+    marginLeft: '350px',
 }
 
 class CustomButton extends React.Component {
     state = {
-        size: 'large'
+        size: 'large',
     }
 
     render () {
