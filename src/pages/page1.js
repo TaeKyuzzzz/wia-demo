@@ -1,8 +1,10 @@
 import CustomDatePicker from '../components/CustomDatePicker/DatePicker';
 import CustomRadioButton from "../components/CustomRadioButton/RadioButton";
-import CustomDropDown from "../components/CustomDropDown/DropDown";
+// import CustomDropDown from "../components/CustomDropDown/DropDown";
 import CustomButton from "../components/CustomButton/Button";
 import CustomTable from "../components/CustomTable/Table";
+import React from "react";
+import CustomSelect from "../components/CustomSelect/Select";
 
 const upperPanelStyle = {
     position: 'fixed',
@@ -24,6 +26,7 @@ const upperPanelStyle = {
 
 const lowerPanelStyle = {
     position: 'fixed',
+    alignItems: 'flex-end',
     top: '130px',
     left: '15px',
     marginLeft: '0px',
@@ -40,36 +43,135 @@ const lowerPanelStyle = {
     borderRadius: '20px',
 }
 
-function page1() {
-    const orderTypes = [
-        {
-            label: 'am',
-            key: '1',
-        },
-        {
-            label: 'pm',
-            key: '2',
-        },
-    ];
-    const thumbString = "Usage history by timezone"
+const tableColumns = [
+    {
+        title: 'Category',
+        dataIndex: 'category',
+        key: 'category',
+        render: (text) => <a>{text}</a>,
+    },
+    {
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
+        render: (text) => <a>{text}</a>,
+    },
+    {
+        title: 'Number of ...',
+        dataIndex: 'no',
+        key: 'no',
+    },
+    {
+        title: 'Movement ...',
+        dataIndex: 'mdots',
+        key: 'mdots',
+    },
+    {
+        title: 'Movement time',
+        dataIndex: 'mt',
+        key: 'mt',
+    },
+    {
+        title: 'Number of movement (pair)',
+        dataIndex: 'nomp',
+        key: 'nomp',
+    },
+    {
+        title: 'Movement distance (pair)',
+        dataIndex: 'mdp',
+        key: 'mdp',
+    },
+    {
+        title: 'Movement time (pair)',
+        dataIndex: 'mtp',
+        key: 'mtp',
+    },
+    {
+        title: 'Number of switch arm off',
+        dataIndex: 'saoff',
+        key: 'saoff',
+    },
+    {
+        title: 'Number of switch arm on',
+        dataIndex: 'saon',
+        key: 'saon',
+    },
+    {
+        title: 'Lookup',
+        dataIndex: 'lu',
+        key: 'lu',
+    },
+];
 
-    return (
-        <div className="page1">
-            <div style={upperPanelStyle}>
-                <CustomDatePicker />
-                <CustomRadioButton />
-                AGV ID
-                <CustomDropDown />
-                <CustomButton />
+const orderTypes = [
+    {
+        label: 'am',
+        key: '1',
+    },
+    {
+        label: 'pm',
+        key: '2',
+    },
+];
+
+const thumbString = "Usage history by timezone"
+
+class Page1 extends React.Component {
+
+    constructor() {
+        super();
+        this.state = {
+            robotLists: [
+                {
+                    value: 'pr01',
+                    label: 'PR01',
+                },
+                {
+                    value: 'pr02',
+                    label: 'PR02',
+                },
+                {
+                    value: 'pr03',
+                    label: 'PR03',
+                },
+                {
+                    value: 'pr04',
+                    label: 'PR04',
+                    disabled: true,
+                },
+            ],
+            historyTypes: [
+                {
+                    value: 'usageHT',
+                    label: 'Usage history by timezone',
+                },
+                {
+                    value: 'usageHC',
+                    label: 'Usage history by category',
+                },
+            ],
+        }
+    }
+
+    render() {
+        return (
+            <div className="page1">
+                <div style={upperPanelStyle}>
+                    <CustomDatePicker/>
+                    <CustomRadioButton/>
+                    AGV ID
+                    <CustomSelect left='10px' top='20px' width='120px' defaultValue='pr01' valueLists={this.state.robotLists}/>
+                    <CustomButton/>
+                </div>
+                <br/>
+                <div style={lowerPanelStyle}>
+                    <CustomSelect left='0px' top='0px' width='220px' height='20px' defaultValue='usageHT' valueLists={this.state.historyTypes}/>
+                    <br/>
+                    <CustomTable/>
+                </div>
             </div>
-            <br />
-            <div style={lowerPanelStyle}>
-                <CustomDropDown presetValue={orderTypes} thumbnail={thumbString}/>
-                <br />
-                <CustomTable />
-            </div>
-        </div>
-    );
+        );
+    }
 }
 
-export default page1;
+export default Page1;
