@@ -1,10 +1,5 @@
-import CustomDatePicker from '../components/CustomDatePicker/DatePicker';
-import CustomRadioButton from "../components/CustomRadioButton/RadioButton";
-// import CustomDropDown from "../components/CustomDropDown/DropDown";
-import CustomButton from "../components/CustomButton/Button";
-import CustomTable from "../components/CustomTable/Table";
 import React from "react";
-import CustomSelect from "../components/CustomSelect/Select";
+import CustomMapCard from "../components/CustomMapCard/MapCard";
 
 const mapCardPanelStyle = {
     position: 'fixed',
@@ -19,8 +14,8 @@ const mapCardPanelStyle = {
     zIndex: '999',
     fontFamily: 'monospace',
     fontSize: '12px',
-    width: '1602px',
-    height: '100px',
+    width: '300px',
+    height: '300px',
 }
 
 class Page2 extends React.Component {
@@ -33,24 +28,24 @@ class Page2 extends React.Component {
     }
 
     render() {
+        let mapCardPanelStyle2 = {...mapCardPanelStyle};
+        let mapCardPanelStyle3 = {...mapCardPanelStyle};
+        mapCardPanelStyle2.left = '330px';
+        mapCardPanelStyle3.left = '645px';
         return (
             <div className="page2">
                 <div style={mapCardPanelStyle}>
-                    <CustomDatePicker/>
-                    <CustomRadioButton/>
-                    AGV ID
-                    <CustomSelect left='10px' top='20px' width='120px' defaultValue='pr01' valueLists={this.state.robotLists}/>
-                    <CustomButton/>
+                    <CustomMapCard mapName='Map 1' date='2023 / 05 / 08' version='Ver 1.0' />
                 </div>
-                <br/>
-                <div style={lowerPanelStyle}>
-                    <CustomSelect left='0px' top='0px' width='220px' height='20px' defaultValue='usageHT' valueLists={this.state.historyTypes}/>
-                    <br/>
-                    <CustomTable/>
+                <div style={mapCardPanelStyle2}>
+                    <CustomMapCard mapName='Map 2' date='2023 / 05 / 09' version='Ver 1.0' />
+                </div>
+                <div style={mapCardPanelStyle3}>
+                    <CustomMapCard mapName='Map 3' date='2023 / 05 / 10' version='Ver 1.0' />
                 </div>
             </div>
         );
     }
 }
 
-export default Page1;
+export default Page2;
